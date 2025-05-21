@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.mobile.databinding.FragmentRecordsBinding
+import com.example.mobile.viewmodel.UserViewModel
 
 class RecordsFragment : Fragment() {
 
@@ -22,18 +23,33 @@ class RecordsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val recordsViewModel =
-            ViewModelProvider(this).get(RecordsViewModel::class.java)
-
         _binding = FragmentRecordsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val root = binding.root
+
+        // ✅ Instantiate ViewModel properly
+        val userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
+        // ✅ Read from shared preferences
+        val sharedPref = requireActivity().getSharedPreferences("app_pref", 0)
+        val userId = sharedPref.getInt("user_id", -1)
+
+        // ✅ Call instance method
+        if (userId != -1) {
+            val user = userViewModel.getUserById(userId)
+            binding.tvWelcomeUser.text = "Welcome, ${user?.name ?: "User"}"
+        }
+
+        // ✅ Other viewmodel you already had
+        val recordsViewModel = ViewModelProvider(this)[RecordsViewModel::class.java]
 
         val textView: TextView = binding.textHome
         recordsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

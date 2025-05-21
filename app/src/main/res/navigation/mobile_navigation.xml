@@ -3,13 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_records">
+    app:startDestination="@id/navigation_login">
 
-    <fragment
+
+
+<fragment
         android:id="@+id/navigation_records"
         android:name="com.example.mobile.ui.records.RecordsFragment"
         android:label="Records"
         tools:layout="@layout/fragment_records" />
+<fragment
+android:id="@+id/navigation_login"
+android:name="com.example.mobile.ui.login.LoginFragment"
+android:label="Login"
+tools:layout="@layout/fragment_login" />
+
 
     <fragment
         android:id="@+id/navigation_charts"
