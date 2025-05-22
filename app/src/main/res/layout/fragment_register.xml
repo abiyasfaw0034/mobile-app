@@ -73,15 +73,15 @@
                 android:text="Register"
                 android:layout_marginBottom="16dp" />
 
-            <TextView
-                android:id="@+id/tvGoToLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Already have an account? Log in"
-                android:textSize="14sp"
-                android:layout_gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/tvGoToLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Already have an account? Log in"
+            android:textSize="14sp" />
 
-        </LinearLayout>
+    </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
