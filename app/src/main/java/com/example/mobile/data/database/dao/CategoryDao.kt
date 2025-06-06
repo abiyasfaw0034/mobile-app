@@ -11,4 +11,10 @@ interface CategoryDao {
 
     @Query("SELECT * FROM Category")
     fun getAll(): LiveData<List<Category>>
+
+    @Query("SELECT COUNT(*) FROM Category")
+    suspend fun getCategoryCount(): Int
+
+    @Query("DELETE FROM Category")
+    suspend fun deleteAll()
 }
