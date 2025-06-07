@@ -59,7 +59,9 @@ class RecordsFragment : Fragment() {
         val currentMonthName = Month.of(selectedMonth).name.lowercase().replaceFirstChar { it.uppercase() }
         binding.tvMonthFilter.text = "$currentMonthName $selectedYear"
 
-        binding.tvMonthFilter.setOnClickListener {
+        // START MODIFICATION
+        // Replace 'binding.tvMonthFilter.setOnClickListener' with 'binding.cardFilter.setOnClickListener'
+        binding.cardFilter.setOnClickListener { // <--- MODIFIED LINE
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
@@ -82,6 +84,7 @@ class RecordsFragment : Fragment() {
             )?.visibility = View.GONE
             datePicker.show()
         }
+        // END MODIFICATION
 
         // ✅ Load first time
         filterTransactionsByMonth()
