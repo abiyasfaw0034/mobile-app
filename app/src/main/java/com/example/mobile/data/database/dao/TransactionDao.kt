@@ -13,7 +13,7 @@ interface TransactionDao {
     fun update(transaction: Transaction)
 
     @Delete
-    fun delete(transaction: Transaction)
+    suspend fun delete(transaction: Transaction)
 
     @Query("SELECT * FROM `Transaction` WHERE userId = :userId ORDER BY date DESC")
     fun getAllForUser(userId: Int): LiveData<List<Transaction>>

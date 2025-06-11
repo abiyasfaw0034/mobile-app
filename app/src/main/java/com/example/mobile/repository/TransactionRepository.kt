@@ -13,5 +13,5 @@ class TransactionRepository(private val dao: TransactionDao) {
         }
     }
     fun update(tx: Transaction) = dao.update(tx)
-    fun delete(tx: Transaction) = dao.delete(tx)
+    suspend fun delete(tx: Transaction) = dao.delete(tx)
 }

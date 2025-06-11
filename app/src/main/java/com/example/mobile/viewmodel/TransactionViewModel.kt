@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mobile.data.database.AppDatabase
 import com.example.mobile.data.database.entities.Transaction
 import com.example.mobile.repository.TransactionRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TransactionViewModel(application: Application) : AndroidViewModel(application) {
@@ -20,5 +21,9 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun update(tx: Transaction) = repo.update(tx)
-    fun delete(tx: Transaction) = repo.delete(tx)
+    fun delete(transaction: Transaction) {
+        viewModelScope.launch(Dispatchers.IO) { // <--- LAUNCH ON BACKGROUND THREAD
+            repo.delete(transaction)
+        }
+    }
 }

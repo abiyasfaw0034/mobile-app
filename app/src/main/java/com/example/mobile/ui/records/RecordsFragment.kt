@@ -1,5 +1,6 @@
 package com.example.mobile.ui.records
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
@@ -107,8 +108,17 @@ class RecordsFragment : Fragment() {
             }
 
             Log.d("RecordsFragment", "Filtered transactions count: ${filtered.size}")
+            transactionAdapter = TransactionAdapter(filtered) { transactionToDelete ->
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Transaction")
+                    .setMessage("Are you sure you want to delete this transaction?")
+                    .setPositiveButton("Delete") { _, _ ->
+                        transactionViewModel.delete(transactionToDelete)
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .show()
+            }
 
-            transactionAdapter = TransactionAdapter(filtered)
             binding.recyclerTransactions.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = transactionAdapter
