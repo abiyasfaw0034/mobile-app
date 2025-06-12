@@ -128,9 +128,9 @@ class RecordsFragment : Fragment() {
             val income = filtered.filter { it.type == "income" }.sumOf { it.amount }
             val balance = income - expenses
 
-            binding.tvExpenses.text = "₹${expenses}"
-            binding.tvIncome.text = "₹${income}"
-            binding.tvBalance.text = "₹${balance}"
+            binding.tvExpenses.text = "${expenses} birr"
+            binding.tvIncome.text = "${income} birr"
+            binding.tvBalance.text = "${balance} birr"
         }
     }
 

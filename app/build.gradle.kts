@@ -54,7 +54,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("androidx.cardview:cardview:1.0.0")
-
+    implementation (libs.mpandroidchart)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
